@@ -1,9 +1,6 @@
 ---
 name: file-pr
 description: File a concise pull request. Use when the user asks to file, open, or create a PR.
-metadata:
-  harness: [claude, codex]
-  platform: [darwin, linux, macOS]
 ---
 
 # File PR
