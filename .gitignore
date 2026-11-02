@@ -1,0 +1,11 @@
+# Runtime caches & sync directories created by agent frameworks
+skills/synced/
+skills/.system/
+.wrangler/
+**/.wrangler/
+
+# Backups & system files
+*.backup.*
+*.bak
+.DS_Store
+Thumbs.db

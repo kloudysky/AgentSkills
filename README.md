@@ -1,17 +1,60 @@
 # AgentSkills
 
-My global Claude Code skills. `~/.claude/skills` is a symlink into this repo, so editing a skill here updates it everywhere and `git pull` syncs machines.
+Global agent skills shared across **Claude Code**, **OpenAI Codex**, **Google Antigravity**, and **xAI Grok**.
 
-## Install on a new machine
+All skills live in `skills/`. Running `./install.sh` symlinks the standard configuration directories for each supported agent environment to `skills/`, providing a single source of truth across all tools and machines.
 
-```sh
-git clone git@github.com:kloudysky/AgentSkills.git
-cd AgentSkills
+## Supported Agents & Locations
+
+| Agent | Discovery Paths Linked |
+| :--- | :--- |
+| **Claude Code** | `~/.claude/skills` |
+| **OpenAI Codex** | `~/.agents/skills` (open standard) & `~/.codex/skills` |
+| **Google Antigravity** | `~/.agents/skills`, `~/.gemini/skills`, `~/.gemini/antigravity-cli/skills`, `~/.gemini/config/skills`, `~/.gemini/antigravity/skills` |
+| **xAI Grok** | `~/.agents/skills`, `~/.grok/skills`, `~/.claude/skills` |
+
+## Quick Start on Any Machine (Mac or Linux)
+
+```bash
+git clone git@github.com:kloudysky/AgentSkills.git ~/Code/AgentSkills
+cd ~/Code/AgentSkills
 ./install.sh
 ```
 
-The script symlinks `~/.claude/skills` to `skills/` in this repo. Any existing skills directory is backed up, not deleted.
+The installer:
+- Symlinks all agent paths directly to `skills/`.
+- Preserves existing system skills (such as `~/.codex/skills/.system`).
+- Backs up any existing real directories (appended with `.backup.<timestamp>`), never overwriting uncommitted local files.
 
-## Adding or editing a skill
+## Keeping Machines in Sync
 
-Edit under `skills/<name>/SKILL.md`, then commit and push. Other machines pick it up with `git pull`.
+Because each agent directory is a symlink directly into this repository:
+1. When you edit or add a skill, commit and push to GitHub:
+   ```bash
+   git add skills/<skill-name>
+   git commit -m "Add <skill-name>"
+   git push
+   ```
+2. On any other machine (local or remote), simply pull:
+   ```bash
+   cd ~/Code/AgentSkills
+   git pull
+   # or run:
+   ./sync.sh
+   ```
+   All four agents immediately see the changes without needing a re-install.
+
+## Adding a New Skill
+
+Create a new directory under `skills/<name>/` with a `SKILL.md`:
+
+```markdown
+---
+name: my-skill
+description: Concise description of when and why an agent should activate this skill.
+---
+
+# My Skill
+
+Instructions for the agent...
+```

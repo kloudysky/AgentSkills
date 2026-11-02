@@ -1,0 +1,10 @@
+// Deploys to <name>.<your-subdomain>.workers.dev. Attach a custom domain from the
+// dashboard instead of adding a route here, so no hostname lands in this repo.
+{
+  "name": "file-upload",
+  "main": "worker.js",
+  "compatibility_date": "2026-08-01",
+  "workers_dev": true,
+  "preview_urls": false,
+  "r2_buckets": [{ "binding": "BUCKET", "bucket_name": "uploads" }]
+}
