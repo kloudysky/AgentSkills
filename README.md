@@ -64,6 +64,10 @@ Because each agent directory is a symlink directly into this repository:
    ```
    All four agents immediately see the changes without needing a re-install.
 
+## Staying Current with tstack
+
+`sync-tstack.sh` runs daily on one machine (cloud-ubuntu, 5:15 AM Chicago). It applies upstream changes under `skills/` from [tstack](https://github.com/t3dotgg/tstack) and pushes them straight to `main`, with no review. Local edits to those skills are kept through a 3-way merge. On a conflict it applies nothing and retries the next day, so check `~/.local/state/tstack-sync/cron.log` there if updates stop. Other machines get the changes through `./sync.sh`.
+
 ## Adding a New Skill
 
 Create a new directory under `skills/<name>/` with a `SKILL.md`:
