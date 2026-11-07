@@ -28,6 +28,7 @@ if ! git diff --quiet "$last" "$latest" -- skills; then
 fi
 echo "$latest" > tstack.rev
 git add tstack.rev
-git commit -qm "chore(skills): sync tstack to ${latest:0:7}"
+git -c user.name=tstack-sync -c user.email=tstack-sync@users.noreply.github.com \
+  commit -qm "chore(skills): sync tstack to ${latest:0:7}"
 git push -q origin main
 log "applied tstack $latest"
